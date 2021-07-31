@@ -37,10 +37,13 @@ function clickHandler(e) {
     if(e.target.classList.contains("clicked-img")){ // 클릭 되어 있는 요소를 클릭하면 클릭 해제
         e.target.classList.remove("clicked-img");
         isClicked = false;
+        e.target.parentNode.removeChild(menuDiv);
     } else {
         e.target.classList.add("clicked-img");
         targetImg = e.target;
         isClicked = true;
+        e.target.parentNode.appendChild(menuDiv);
+        menuDiv.classList.remove("invisible");
     }
 }
 
@@ -52,7 +55,10 @@ function saveBook(){
 }
 
 function addMovie(img_url) {
+    const newDiv = document.createElement("div");
     const newImg = document.createElement("img");
+    newDiv.appendChild(newImg);
+    newDiv.classList.add("img-div");
     newImg.id = ++id_num;
     newImg.src = img_url;
     newImg.classList.add("movie-img");
@@ -63,11 +69,14 @@ function addMovie(img_url) {
     };
     movieList.push(obj);
     saveMovie();
-    movieDiv.appendChild(newImg);
+    movieDiv.appendChild(newDiv);
 }
 
 function addBook(img_url) {
+    const newDiv = document.createElement("div");
     const newImg = document.createElement("img");
+    newDiv.appendChild(newImg);
+    newDiv.classList.add("img-div");
     newImg.id = ++id_num;
     newImg.src = img_url;
     newImg.classList.add("book-img");
@@ -78,7 +87,7 @@ function addBook(img_url) {
     };
     bookList.push(obj);
     saveBook();
-    bookDiv.appendChild(newImg);
+    bookDiv.appendChild(newDiv);
 }
 
 function readMovieFile(){
@@ -121,10 +130,18 @@ function loadImg(){
     deleteBtn.addEventListener("click", deleteImg);
 }
 
+function abc(){
+    console.log(bookDiv.children[0]);
+    // bookDiv.children[0].appendChild(menuDiv);
+    bookDiv.appendChild(menuDiv);
+    console.log("done");
+}
+
 function init(){
     loadImg();
     bookInput.addEventListener("change", readBookFile);
     movieInput.addEventListener("change", readMovieFile);
+    abc();
 }
 
 init();
