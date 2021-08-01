@@ -1,3 +1,10 @@
+body {
+    margin: 0;
+}
+.memory-div{
+    display: inline-block;
+    margin: 10px;
+}
 .book-img, .movie-img {
     position: absolute;
     width: 100px;
@@ -15,27 +22,38 @@
     width: 100px;
     height: 140px;
     margin: 10px;
-    /* background-color: grey; */
 }
 
 .book-icon, .movie-icon {
     font-size: 30px;
 }
-.invisible {
-    visibility: hidden;
-}
-.menu-div {
+.menu-span {
     position: absolute;
     z-index: 2;
     font-size: 20px;
+    cursor: pointer;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
 .clicked-img {
     z-index: 1;
     transition-duration: 0.5s;
     -webkit-filter: blur(1px) opacity(.3) drop-shadow(0 0 0 white);
     filter: blur(1px) opacity(.3) drop-shadow(0 0 0 white);
+}
+.memo-div {
+    display: inline-block;
+    float: right;
+    width: 300px;
+    height: 500px;
+    background-color: pink;
+}
+.invisible {
+    display: none;
+}
+.memo-menu {
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
 }

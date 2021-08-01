@@ -2,9 +2,13 @@ const bookInput = document.querySelector(".book-input"),
     movieInput = document.querySelector(".movie-input"),
     bookDiv = document.querySelector(".book-div"),
     movieDiv = document.querySelector(".movie-div"),
-    menuDiv = document.querySelector(".menu-div"),
+    menuSpan = document.querySelector(".menu-span"),
     deleteBtn = document.querySelector(".delete-btn"),
-    memoBtn = document.querySelector(".memo-btn");
+    memoBtn = document.querySelector(".memo-btn"),
+    memoDiv = document.querySelector(".memo-div"),
+    memoMenu = document.querySelector(".memo-menu"),
+    closeBtn = document.querySelector(".close-btn"),
+    saveBtn = document.querySelector(".save-btn");
 
 let bookList = [],
     movieList = [];
@@ -12,6 +16,23 @@ let bookList = [],
 let targetImg;
 let isClicked = false;
 let id_num = 0;
+
+function saveMemo() {
+    
+}
+
+function closeMemo() {
+    targetImg.classList.remove("clicked-img");
+    isClicked = false;
+    targetImg.parentNode.removeChild(menuSpan);
+    memoDiv.classList.add("invisible");
+}
+
+function openMemo() {
+    memoDiv.classList.remove("invisible");
+    closeBtn.addEventListener("click", closeMemo);
+    saveBtn.addEventListener("click", saveMemo);
+}
 
 function deleteImg() {
     if (!isClicked) window.alert("삭제할 컨텐츠를 클릭해주세요.");
@@ -28,7 +49,7 @@ function deleteImg() {
             movieList = data.filter(a => a.id !== parseInt(targetImg.id));
             saveMovie();
         }
-        menuDiv.classList.add("invisible");
+        menuSpan.classList.add("invisible");
         isClicked = false;
         window.location.reload();
     }
@@ -39,13 +60,14 @@ function clickHandler(e) {
     if (e.target.classList.contains("clicked-img")) { // 클릭 되어 있는 요소를 클릭하면 클릭 해제
         e.target.classList.remove("clicked-img");
         isClicked = false;
-        e.target.parentNode.removeChild(menuDiv);
+        e.target.parentNode.removeChild(menuSpan);
+        memoDiv.classList.add("invisible");
     } else {
         e.target.classList.add("clicked-img");
         targetImg = e.target;
         isClicked = true;
-        e.target.parentNode.appendChild(menuDiv);
-        menuDiv.classList.remove("invisible");
+        e.target.parentNode.appendChild(menuSpan);
+        menuSpan.classList.remove("invisible");
     }
 }
 
@@ -129,6 +151,7 @@ function loadImg() {
             addMovie(a.data);
         });
     }
+    memoBtn.addEventListener("click", openMemo);
     deleteBtn.addEventListener("click", deleteImg);
 }
 
