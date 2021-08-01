@@ -14,27 +14,29 @@ let isClicked = false;
 let id_num = 0;
 
 function deleteImg() {
-    if(!isClicked) window.alert("삭제할 컨텐츠를 클릭해주세요.");
-    else if(confirm("삭제하시겠습니까?")){
+    if (!isClicked) window.alert("삭제할 컨텐츠를 클릭해주세요.");
+    else if (confirm("삭제하시겠습니까?")) {
         const parent = targetImg.parentNode;
-        if(parent.classList.contains("book-div")){
+        if (parent.parentNode.classList.contains("book-div")) {
             const data = JSON.parse(localStorage.getItem("book"));
             parent.removeChild(targetImg);
             bookList = data.filter(a => a.id !== parseInt(targetImg.id));
             saveBook();
-        } else{
+        } else {
             const data = JSON.parse(localStorage.getItem("movie"));
             parent.removeChild(targetImg);
             movieList = data.filter(a => a.id !== parseInt(targetImg.id));
             saveMovie();
         }
+        menuDiv.classList.add("invisible");
         isClicked = false;
+        window.location.reload();
     }
 }
 
 function clickHandler(e) {
-    if(isClicked && !e.target.classList.contains("clicked-img")) return; // 클릭 되어 있는 요소가 있으면 함수 종료
-    if(e.target.classList.contains("clicked-img")){ // 클릭 되어 있는 요소를 클릭하면 클릭 해제
+    if (isClicked && !e.target.classList.contains("clicked-img")) return; // 클릭 되어 있는 요소가 있으면 함수 종료
+    if (e.target.classList.contains("clicked-img")) { // 클릭 되어 있는 요소를 클릭하면 클릭 해제
         e.target.classList.remove("clicked-img");
         isClicked = false;
         e.target.parentNode.removeChild(menuDiv);
@@ -47,10 +49,10 @@ function clickHandler(e) {
     }
 }
 
-function saveMovie(){
+function saveMovie() {
     localStorage.setItem("movie", JSON.stringify(movieList));
 }
-function saveBook(){
+function saveBook() {
     localStorage.setItem("book", JSON.stringify(bookList));
 }
 
@@ -64,8 +66,8 @@ function addMovie(img_url) {
     newImg.classList.add("movie-img");
     newImg.addEventListener("click", clickHandler);
     obj = {
-        id : id_num,
-        data : img_url
+        id: id_num,
+        data: img_url
     };
     movieList.push(obj);
     saveMovie();
@@ -82,38 +84,38 @@ function addBook(img_url) {
     newImg.classList.add("book-img");
     newImg.addEventListener("click", clickHandler);
     obj = {
-        id : id_num,
-        data : img_url
+        id: id_num,
+        data: img_url
     };
     bookList.push(obj);
     saveBook();
     bookDiv.appendChild(newDiv);
 }
 
-function readMovieFile(){
+function readMovieFile() {
     const file = movieInput.files[0];
     if (!file.type.startsWith('image/')) window.alert("이미지 파일만 선택해주십시오.");
     else {
         const reader = new FileReader();
-        reader.onload = function(){
+        reader.onload = function () {
             addMovie(reader.result);
         };
         reader.readAsDataURL(file);
     }
 }
-function readBookFile(){
+function readBookFile() {
     const file = bookInput.files[0];
     if (!file.type.startsWith('image/') && file !== null) window.alert("이미지 파일만 선택해주십시오.");
     else {
         const reader = new FileReader();
-        reader.onload = function(){
+        reader.onload = function () {
             addBook(reader.result);
         };
         reader.readAsDataURL(file);
     }
 }
 
-function loadImg(){
+function loadImg() {
     // if(localStorage.getItem("book") !== null || localStorage.getItem("movie") !== null) 
     const book_data = JSON.parse(localStorage.getItem("book")),
         movie_data = JSON.parse(localStorage.getItem("movie"));
@@ -130,18 +132,10 @@ function loadImg(){
     deleteBtn.addEventListener("click", deleteImg);
 }
 
-function abc(){
-    console.log(bookDiv.children[0]);
-    // bookDiv.children[0].appendChild(menuDiv);
-    bookDiv.appendChild(menuDiv);
-    console.log("done");
-}
-
-function init(){
+function init() {
     loadImg();
     bookInput.addEventListener("change", readBookFile);
     movieInput.addEventListener("change", readMovieFile);
-    abc();
 }
 
 init();
