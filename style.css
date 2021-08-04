@@ -1,81 +1,124 @@
+html {
+  font-size: 62.5%;
+  /* width: 100%;
+  height: 100%; */
+}
 body {
-    margin: 0;
+  margin: 0;
 }
-.memory-div{
-    display: inline-block;
-    margin: 10px;
+.nav-bar {
+  display: flex;
+  height: 5vh;
+  border-bottom: 1px solid rgb(218, 218, 218);
+  padding: 2rem;
+  justify-content: space-between;
 }
-.book-img, .movie-img {
-    position: absolute;
-    width: 100px;
-    height: 140px;
-    border: 0.1px solid rgb(209, 209, 209);
-    z-index: 1;
+.nav-title {
+  display: flex;
+  align-items: center;
 }
-.book-div {
-    position: relative;
-    z-index: 1;
+.memory-icon {
+  width: 2.3rem;
+  height: 2.7rem;
+  margin-right: 1rem;
+}
+.page-name {
+  font-size: 2.5rem;
+}
+.nav-bar .nav-icon {
+  margin-left: 2rem;
+  font-size: 3rem;
+  cursor: pointer;
+}
+.nav-icon:hover {
+  background-color: rgb(233, 233, 233);
+}
+.contents-div {
+  display: inline-block;
+  margin: 1rem;
+}
+.book-img,
+.movie-img {
+  position: absolute;
+  width: 10rem;
+  height: 14rem;
+  border: 0.1rem solid rgb(209, 209, 209);
+  z-index: 1;
+}
+.clendar-div {
+  cursor: pointer;
+}
+#file-browser {
+  display: none;
+}
+.file-icon {
+  background: none;
+  border: none;
+  padding: 0;
 }
 .img-div {
-    display: inline-block;
-    position: relative;
-    width: 100px;
-    height: 140px;
-    margin: 10px;
+  display: inline-block;
+  position: relative;
+  width: 10rem;
+  height: 14rem;
+  margin: 1rem;
 }
-
-.book-icon, .movie-icon {
-    font-size: 30px;
+.book-icon,
+.movie-icon,
+.clendar-div {
+  font-size: 3rem;
 }
 .edit-menu {
-    position: absolute;
-    z-index: 2;
-    font-size: 20px;
-    cursor: pointer;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 2;
+  font-size: 2rem;
+  cursor: pointer;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .clicked-img {
-    z-index: 1;
-    transition-duration: 0.5s;
-    -webkit-filter: blur(1px) opacity(.3) drop-shadow(0 0 0 white);
-    filter: blur(1px) opacity(.3) drop-shadow(0 0 0 white);
+  z-index: 1;
+  transition-duration: 0.5s;
+  -webkit-filter: blur(1px) opacity(0.3) drop-shadow(0 0 0 white);
+  filter: blur(1px) opacity(0.3) drop-shadow(0 0 0 white);
 }
 .memo-div {
-    display: inline-block;
-    float: right;
-    width: 300px;
-    height: 500px;
-    background-color: pink;
+  display: inline-block;
+  float: right;
+  width: 30vw;
+  height: 85vh;
+  background-color: rgb(218, 218, 218);
+  /* border-left: 1px solid grey; */
 }
 .invisible {
-    display: none;
+  display: none;
 }
-.memo-menu {
-    padding-left: 10px;
-    font-size: 20px;
-    border-bottom: 1px solid white;
+.memo-nav {
+  padding-left: 1rem;
+  font-size: 2rem;
+  border-bottom: 0.1rem solid white;
 }
-.memo-menu .save-btn,.close-btn{
-    cursor: pointer;
+.memo-nav .save-btn,
+.close-btn {
+  cursor: pointer;
 }
-.memo-space{
-    width: inherit;
-    height: 455px;
+.memo-space {
+  width: 100%;
+  height: 45rem;
 }
-.memo-space textarea{
-    border: none;
-    background: none;
-    outline: none;
-    width: inherit;
-    height: inherit;
-    overflow-y: auto;
-    /* padding-left: 10px; */
+.memo-space textarea {
+  border: none;
+  background: none;
+  outline: none;
+  width: inherit;
+  height: inherit;
+  overflow-y: auto;
+  /* padding-left: 10px; */
 }
 .save-alarm {
-    position: absolute;
-    top: 1%;
-    font-size: 10px;
-    margin-left: 1%;
+  position: absolute;
+  top: 1%;
+  font-size: 1rem;
+  margin-left: 1%;
 }

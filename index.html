@@ -1,36 +1,57 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Memory Space</title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-    <div class="memory-div">
-        <span class="edit-menu invisible">
-            <span class="memo-btn">✏️</span>
-            <span class="delete-btn">🗑</span>
+    <link rel="icon" href="/images/memory-icon.png" />
+  </head>
+  <body>
+    <div class="nav-bar">
+      <div class="nav-title">
+        <img src="/images/memory-icon.png" alt="" class="memory-icon" />
+        <span class="page-name">Memory Space</span>
+      </div>
+      <div class="nav-icons">
+        <span class="nav-icon book-icon">📚</span>
+        <span class="nav-icon movie-icon">🎥</span>
+        <span class="nav-icon calendar-icon">🗓</span>
+        <span>
+          <input type="file" id="file-browser" />
+          <input
+            type="button"
+            value="📂"
+            class="nav-icon file-icon"
+            onclick="document.getElementById('file-selector').click();"
+          />
         </span>
-        <span class="book-icon">📚</span>
-        <input type="file" class="book-input" />
-        <div class="book-div">
-        </div><br><br>
-        <span class="movie-icon">🎥</span>
-        <input type="file" class="movie-input" />
-        <div class="movie-div"></div>
+      </div>
+    </div>
+
+    <div class="contents-div">
+      <span class="edit-menu invisible">
+        <span class="memo-btn">✏️</span>
+        <span class="delete-btn">🗑</span>
+      </span>
+      <span class="book-icon">📚</span>
+      <input type="file" class="book-input" />
+      <!-- 인풋 나눠져 있는거 합쳐야 함 -->
+      <div class="book-div"></div>
+      <br /><br />
+      <span class="movie-icon">🎥</span>
+      <input type="file" class="movie-input" />
+      <div class="movie-div"></div>
     </div>
     <div class="memo-div invisible">
-        <div class="memo-menu">
-            <span class="close-btn">☒</span>
-            <span class="save-btn">☑︎</span>
-        </div>
-        <div class="memo-space">
-            <textarea spellcheck="false"></textarea>
-        </div>
+      <div class="memo-nav">
+        <span class="close-btn">☒</span>
+        <span class="save-btn">☑︎</span>
+      </div>
+      <div class="memo-space">
+        <textarea spellcheck="false"></textarea>
+      </div>
     </div>
     <script src="app.js"></script>
-</body>
-
+  </body>
 </html>
