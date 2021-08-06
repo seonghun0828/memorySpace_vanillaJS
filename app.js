@@ -3,6 +3,8 @@ const bookInput = document.querySelector('.book-input'),
   bookIcon = document.querySelector('.book-icon'),
   movieIcon = document.querySelector('.movie-icon'),
   calendarIcon = document.querySelector('.calendar-icon'),
+  searchIcon = document.querySelector('.search-icon'),
+  fileBrowser = document.querySelector('#file-browser'),
   bookDiv = document.querySelector('.book-div'),
   movieDiv = document.querySelector('.movie-div'),
   calendarDiv = document.querySelector('.calendar-div'),
@@ -167,7 +169,7 @@ function addBook(img_url, img_memo) {
 }
 
 function readMovieFile() {
-  const file = movieInput.files[0];
+  const file = fileBrowser.files[0];
   if (!file.type.startsWith('image/'))
     window.alert('이미지 파일만 선택해주십시오.');
   else {
@@ -179,7 +181,7 @@ function readMovieFile() {
   }
 }
 function readBookFile() {
-  const file = bookInput.files[0];
+  const file = fileBrowser.files[0];
   if (!file.type.startsWith('image/') && file !== null)
     window.alert('이미지 파일만 선택해주십시오.');
   else {
@@ -190,7 +192,15 @@ function readBookFile() {
     reader.readAsDataURL(file);
   }
 }
-
+function searchContents() {
+  const contents = localStorage.getItem('contents');
+  if (contents[0] === 'b') {
+    readBookFile();
+  }
+  if (contents[0] === 'm') {
+    readMovieFile();
+  }
+}
 function loadContents() {
   const contents = localStorage.getItem('contents');
   if (contents[0] === 'b') {
@@ -222,7 +232,7 @@ function loadImg() {
   bookIcon.addEventListener('click', clickNavIcons);
   movieIcon.addEventListener('click', clickNavIcons);
   calendarIcon.addEventListener('click', clickNavIcons);
-  loadContents();
+  if (localStorage.getItem('contents') !== null) loadContents();
   if (book_data !== null) {
     book_data.forEach((a) => {
       addBook(a.data, a.memo);
@@ -241,6 +251,7 @@ function init() {
   loadImg();
   // bookInput.addEventListener('change', readBookFile);
   // movieInput.addEventListener('change', readMovieFile);
+  fileBrowser.addEventListener('change', searchContents);
 }
 
 init();

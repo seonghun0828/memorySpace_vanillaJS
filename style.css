@@ -45,13 +45,10 @@ body {
   border: 0.1rem solid rgb(209, 209, 209);
   z-index: 1;
 }
-.clendar-div {
-  cursor: pointer;
-}
 #file-browser {
   display: none;
 }
-.file-icon {
+.search-icon {
   background: none;
   border: none;
   padding: 0;
@@ -121,4 +118,35 @@ body {
   top: 1%;
   font-size: 1rem;
   margin-left: 1%;
+}
+@media (max-width: 544px) {
+  .memory-icon {
+    width: 2rem;
+    height: 2.3rem;
+    margin-right: 0.5rem;
+  }
+  .page-name {
+    font-size: 2rem;
+  }
+  .nav-bar .nav-icon {
+    margin-left: 1rem;
+    font-size: 2.5rem;
+  }
+  .img-div {
+    width: 8rem;
+    height: 11rem;
+    margin: 0.7rem;
+  }
+  .book-img,
+  .movie-img {
+    width: 100%;
+    height: 100%;
+  }
+  .memo-div {
+    width: 30vw;
+    height: 30vh;
+  }
+  .edit-menu {
+    font-size: 1.4rem;
+  }
 }
