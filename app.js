@@ -1,7 +1,11 @@
 const bookInput = document.querySelector('.book-input'),
   movieInput = document.querySelector('.movie-input'),
+  bookIcon = document.querySelector('.book-icon'),
+  movieIcon = document.querySelector('.movie-icon'),
+  calendarIcon = document.querySelector('.calendar-icon'),
   bookDiv = document.querySelector('.book-div'),
   movieDiv = document.querySelector('.movie-div'),
+  calendarDiv = document.querySelector('.calendar-div'),
   editMenu = document.querySelector('.edit-menu'),
   deleteBtn = document.querySelector('.delete-btn'),
   memoBtn = document.querySelector('.memo-btn'),
@@ -17,6 +21,8 @@ let bookList = [],
 let targetImg;
 let isClicked = false;
 let id_num = 0;
+let isBook = false;
+let isMovie = false;
 
 function removeAlarm() {
   memoNav.removeChild(memoNav.lastChild);
@@ -185,10 +191,38 @@ function readBookFile() {
   }
 }
 
+function loadContents() {
+  const contents = localStorage.getItem('contents');
+  if (contents[0] === 'b') {
+    bookDiv.classList.remove('invisible');
+    movieDiv.classList.add('invisible');
+    calendarDiv.classList.add('invisible');
+  }
+  if (contents[0] === 'm') {
+    bookDiv.classList.add('invisible');
+    movieDiv.classList.remove('invisible');
+    calendarDiv.classList.add('invisible');
+  }
+  if (contents[0] === 'c') {
+    bookDiv.classList.add('invisible');
+    movieDiv.classList.add('invisible');
+    calendarDiv.classList.remove('invisible');
+  }
+}
+function clickNavIcons(e) {
+  const contents_html = e.target.classList.item(1); // book, movie or calendar
+  localStorage.setItem('contents', contents_html);
+  loadContents();
+}
+
 function loadImg() {
   // if(localStorage.getItem("book") !== null || localStorage.getItem("movie") !== null)
   const book_data = JSON.parse(localStorage.getItem('book')),
     movie_data = JSON.parse(localStorage.getItem('movie'));
+  bookIcon.addEventListener('click', clickNavIcons);
+  movieIcon.addEventListener('click', clickNavIcons);
+  calendarIcon.addEventListener('click', clickNavIcons);
+  loadContents();
   if (book_data !== null) {
     book_data.forEach((a) => {
       addBook(a.data, a.memo);
@@ -205,8 +239,8 @@ function loadImg() {
 
 function init() {
   loadImg();
-  bookInput.addEventListener('change', readBookFile);
-  movieInput.addEventListener('change', readMovieFile);
+  // bookInput.addEventListener('change', readBookFile);
+  // movieInput.addEventListener('change', readMovieFile);
 }
 
 init();
